@@ -30,13 +30,13 @@ mongoose.connection
 // The cookie itself only contains the id of a session; more data about the session
 // is stored inside of MongoDB.
 app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: 'aaabbbccc',
-  store: new MongoStore({
-    url: MONGO_URI,
-    autoReconnect: true
-  })
+    resave: true,
+    saveUninitialized: true,
+    secret: 'aaabbbccc',
+    store: new MongoStore({
+        url: MONGO_URI,
+        autoReconnect: true
+    })
 }));
 
 // Passport is wired into express as a middleware. When a request comes in,
@@ -48,8 +48,8 @@ app.use(passport.session());
 // Instruct Express to pass on any request made to the '/graphql' route
 // to the GraphQL instance.
 app.use('/graphql', expressGraphQL({
-  schema,
-  graphiql: true
+    schema,
+    graphiql: true
 }));
 
 // Webpack runs as a middleware.  If any request comes in for the root route ('/')
