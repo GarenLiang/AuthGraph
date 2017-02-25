@@ -5,13 +5,13 @@ import query from '../queries/CurrentUser';
 import mutation from '../mutations/Logout';
 
 class Header extends Component {
-    onLogoutClick() {
-      this.props.mutate({
-        refetchQueries: [{ query }]
-      });
-    }
+  onLogoutClick() {
+    this.props.mutate({
+      refetchQueries: [{ query }]
+    });
+  }
 
-  renderButton() {
+  renderButtons() {
     const { loading, user } = this.props.data;
 
     if (loading) { return <div />; }
@@ -23,12 +23,17 @@ class Header extends Component {
     } else {
       return (
         <div>
-          <li><Link to="/signup">Signup</Link></li>
-          <li><Link to="/login">Login</Link></li>
+          <li>
+            <Link to="/signup">Signup</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
         </div>
       );
     }
   }
+
   render() {
     return (
       <nav>
@@ -37,7 +42,7 @@ class Header extends Component {
             Home
           </Link>
           <ul className="right">
-            {this.renderButton()}
+            {this.renderButtons()}
           </ul>
         </div>
       </nav>
@@ -45,6 +50,6 @@ class Header extends Component {
   }
 }
 
-export default  graphql(mutation)(
+export default graphql(mutation)(
   graphql(query)(Header)
-);
+)
